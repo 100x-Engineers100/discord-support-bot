@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir python-dotenv
 RUN pip install --no-cache-dir discord openai==0.28 requests
 
 # Copy .env file into the container at /usr/src/app
-COPY .env .env
+
 
 # Run main.py when the container launches
 CMD ["python", "main.py"]
