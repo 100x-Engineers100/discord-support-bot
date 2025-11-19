@@ -8,10 +8,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install python-dotenv to load environment variables from .env file
-RUN pip install --no-cache-dir python-dotenv
-
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir discord openai requests
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy .env file into the container at /usr/src/app
 
