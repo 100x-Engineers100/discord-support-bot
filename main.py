@@ -6,6 +6,24 @@ from openai import OpenAI
 import asyncio
 import logging
 import re
+from flask import Flask
+from threading import Thread
+
+# Initialize Flask app for web service mimicry
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Discord Bot is alive!"
+
+def run_web_server():
+    port = int(os.getenv("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
+
+def start_web_server_thread():
+    t = Thread(target=run_web_server)
+    t.daemon = True
+    t.start()
 
 # Load environment variables from .env file
 load_dotenv()
@@ -164,4 +182,5 @@ async def on_message(message):
                         chunk = chunk[1800:]
 
 # Run the bot
+    start_web_server_thread() # Start the web server
 bot.run(DISCORD_BOT_TOKEN)
